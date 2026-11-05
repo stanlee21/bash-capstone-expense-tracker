@@ -44,50 +44,39 @@ The application is designed around the following command structure:
 ./expense.sh COMMAND [ARGUMENTS]
 ```
 
-### Available Commands
-
-| Command | Description |
-|---|---|
-| `add AMOUNT CATEGORY [NOTE]` | Add a new expense |
-| `list` | Display all recorded expenses |
-| `delete ID` | Delete an expense by its ID |
-| `total` | Display total spending |
-| `month` | Display monthly spending by category |
-| `help` | Display usage instructions |
-
 ### Examples
 
-**Add an expense**
+**Add an expense*
 
 ```bash
 ./expense.sh add 2500 Food Lunch
 ```
 
-**List all expenses**
+**List all expenses*
 
 ```bash
 ./expense.sh list
 ```
 
-**Delete an expense**
+**Delete an expense*
 
 ```bash
 ./expense.sh delete 1
 ```
 
-**View total spending**
+**View total spending*
 
 ```bash
 ./expense.sh total
 ```
 
-**View monthly spending**
+**View monthly spending*
 
 ```bash
 ./expense.sh month
 ```
 
-**Display help**
+**Display help*
 
 ```bash
 ./expense.sh help
