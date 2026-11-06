@@ -48,10 +48,11 @@ Success: Deleted expense ID  6678
 The data is saved inside a simple flat-text database file located at `./data/expenses.csv`. Each field is cleanly separated by a comma (`,`) character.
 
 Three example lines:
-```
-    6678,2026-11-06 14:54,300,food,supper
-4   033,2026-11-06 14:56,600,Transport,to rebase
-    1927,2026-11-06 14:56,500,Transport,to church
+
+```csv
+6678,2026-11-06 14:54,300,food,supper
+033,2026-11-06 14:56,600,Transport,to rebase
+1927,2026-11-06 14:56,500,Transport,to church
 ```
 
 ## Errors I will handle
