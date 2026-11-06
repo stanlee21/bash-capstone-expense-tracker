@@ -3,16 +3,14 @@
 list_expenses() {
     local file="data/expense.csv"
 
-    #checking if the file is empty or not
-    if [[ ! -s "$file" ]]; then
-        echo "Your expense tracker is empty"
+    if [[ ! -f "$file" || ! -s "$file" ]]; then
+        echo "Your expense tracker is empty."
         return 0
     fi
 
-    # Print a header layout 
-    echo -e "ID\tDATE\tTIME\tAMOUNT\tCATEGORY\tNOTE"
-    echo "--------------------------------------------------------"
-
-    tr ',' '\t' < $file
-
+    # Use column command to create a perfectly aligned table layout
+    (
+        echo "ID,DATE,TIME,AMOUNT,CATEGORY,NOTE"
+        cat "$file"
+    ) | column -s, -t
 }
