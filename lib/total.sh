@@ -10,7 +10,7 @@ total_expenses() {
         return 1
     fi
 
-    while IFS=, read -r id data amount category note; do
+    while IFS=, read -r id _ amount _ _; do
         [[ "$id" == "id" ]] && continue
         [[ -z "$id" ]] && continue
 
