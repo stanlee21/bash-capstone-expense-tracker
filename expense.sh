@@ -4,6 +4,7 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
 source "$SCRIPT_DIR/lib/add.sh"
 source "$SCRIPT_DIR/lib/list.sh"
+source "$SCRIPT_DIR/lib/delete.sh"
 source "$SCRIPT_DIR/lib/total.sh"
 source "$SCRIPT_DIR/lib/month.sh"
 source "$SCRIPT_DIR/lib/help.sh"
@@ -17,6 +18,9 @@ case "$command" in
     list)
         list_expenses
         ;;
+    delete)
+        delete_expense "$2"
+        ;; 
     total)
         total_expenses
         ;;
