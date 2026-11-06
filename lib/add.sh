@@ -1,7 +1,9 @@
 #!/bin/bash
 
 add_expense() {
-    local file="data/expense.csv"
+    local script_dir
+    script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+    local file="$script_dir/data/expense.csv"
 
     local AMOUNT="$1"
     local CATEGORY="$2"
@@ -31,10 +33,15 @@ add_expense() {
 
     mkdir -p "$(dirname "$file")"
 
+    if [[ ! -s "$file" ]]; then
+        echo "id,date,amount,category,note" > "$file"
+    fi
+
     # Generate a unique ID
     while true; do
-        ID=$RANDOM
-        if [[ ! -f "$file" ]] || ! awk -F, -v id="$ID" '$1 == id {found=1; exit} END {exit !found}' "$file"; then
+        ID="$(date +%s)${RANDOM}"
+
+        if ! awk -F, -v id="$ID" '$1 == id {found=1; exit} END {exit !found}' "$file"; then
             break
         fi
     done

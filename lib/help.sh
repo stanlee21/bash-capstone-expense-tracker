@@ -16,8 +16,9 @@ Available commands:
   help      Display this help message
 
 Examples:
-  ./expense.sh add
+  ./expense.sh add 500 Food "Lunch"
   ./expense.sh list
+  ./expense.sh delete 28007
   ./expense.sh total
   ./expense.sh month
   ./expense.sh help

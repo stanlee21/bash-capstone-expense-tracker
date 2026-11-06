@@ -1,12 +1,19 @@
 #!/bin/bash
 
 delete_expense() {
-    local file="data/expense.csv"
+    local script_dir
+    script_dir="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
+    local file="$script_dir/data/expense.csv"
     local target_ID="$1"
 
     if [[ -z "$target_ID" ]]; then
         echo "Error: Please specify the ID of the expense you want to delete."
         echo "Example: ./expense.sh delete 28007"
+        return 1
+    fi
+
+    if [[ ! "$target_ID" =~ ^[0-9]+$ ]]; then
+        echo "Error: Invalid expense ID."
         return 1
     fi
 
@@ -21,9 +28,11 @@ delete_expense() {
     fi
 
     local temp_file
-    temp_file=$(mktemp)
+    temp_file=$(mktemp "${file}.XXXXXX")
 
-    grep -v "^${target_ID}," "$file" > "$temp_file" 
+    awk -F, -v id="$target_ID" 'NR == 1 || $1 != id' "$file" > "$temp_file"
+
+    chmod --reference="$file" "$temp_file"
     mv "$temp_file" "$file"
 
     echo "Success: Deleted expense ID $target_ID"
