@@ -11,7 +11,7 @@ command="${1:-}"
 
 case "$command" in
     add)
-        add_expense
+        add_expense "$2" "$3" "$4"
         ;;
     total)
         total_expenses
