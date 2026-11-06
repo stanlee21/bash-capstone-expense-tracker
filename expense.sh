@@ -2,6 +2,7 @@
 
 SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
+source "$SCRIPT_DIR/lib/add.sh"
 source "$SCRIPT_DIR/lib/total.sh"
 source "$SCRIPT_DIR/lib/month.sh"
 source "$SCRIPT_DIR/lib/help.sh"
@@ -9,6 +10,9 @@ source "$SCRIPT_DIR/lib/help.sh"
 command="${1:-}"
 
 case "$command" in
+    add)
+        add_expense
+        ;;
     total)
         total_expenses
         ;;
